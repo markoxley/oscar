@@ -1,14 +1,21 @@
 package legs
 
 import (
-	"github.com/robotmox/oscar/modules/common"
-	"gobot.io/x/gobot"
-	"gobot.io/x/gobot/platforms/raspi"
+	"gobot.io/x/gobot/drivers/gpio"
 )
 
-const ChannelName = "Legs"
+const (
+	jointCount = 3
+	legCount   = 4
+)
 
-func New(rpi *raspi.Adaptor) (*gobot.Robot, *chan common.Messager, error) {
-	c := make(chan common.Messager)
-	return nil, &c, nil
+const (
+	FrontLeft = iota
+	FrontRight
+	RearRight
+	RearLeft
+)
+
+type Leg struct {
+	joints []*gpio.ServoDriver
 }
